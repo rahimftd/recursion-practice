@@ -9,8 +9,6 @@ Ex: numToText("I have 5 dogs and 6 ponies"); // returns "I have five dogs and si
 */
 
 var numToText = function(str) {
-	var first = str[0];
-	var rest = str.slice(1);
 
 	var numLookup = {
 		0: "zero",
@@ -25,9 +23,16 @@ var numToText = function(str) {
 		9: "nince",
 	}
 
-	if (rest === "") {
-		return numLookup[first] || first;
-	} else {
-		return (numLookup[first] || first) + numToText(rest);
+	function helper (convertedStr, firstChar, remainingStr) {
+
+		var convertedChar = numLookup[firstChar] || firstChar;
+
+		if (remainingStr === "") {
+			return convertedStr + convertedChar;
+		} else {
+			return helper(convertedStr + convertedChar, remainingStr[0], remainingStr.slice(1))
+		}
 	}
+
+	return helper("", str[0], str.slice(1));
 };
