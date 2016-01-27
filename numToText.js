@@ -22,7 +22,7 @@ var numToText = function(str) {
 		6: "six",
 		7: "seven",
 		8: "eight",
-		9: "nince",
+		9: "nine",
 	}
 
 	if (rest === "") {
